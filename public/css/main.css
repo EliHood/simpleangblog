@@ -1,0 +1,16 @@
+#eli-style-heading{
+	background-color: #333;
+	color: #fff;
+}
+
+#eli-style-button{
+	margin: 10px 0px;
+	background-color: transparent;
+	color:#333;
+	border: 1px solid #333;
+}
+
+#mypost{
+	display: block;
+	clear: both;
+}
