@@ -17,7 +17,6 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	$scope.addPost = function(){
 		
 		$http.post('/auth/post', {
-			title: $scope.post.title,
 			body: $scope.post.body, 
 
 		}).then(function(data, status, headers, config){
@@ -31,7 +30,6 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 		
 		});
 
-		$scope.post.title = '';
 		$scope.post.body = '';
 
 

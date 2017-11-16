@@ -11,10 +11,6 @@
                 <div class="panel-body">
                     <form ng-model="postForm" name="postform" method="POST" novalidate>
                            {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="post.title">Title</label>
-                            <input ng-model="post.title"  class="form-control" type="text" name="title" placeholder="Enter a title" required/>
-                        </div>
 
                         <div class="form-group">
                             <label for="post.title">Post</label>
@@ -26,24 +22,23 @@
                 </div>
             </div>
 
-
+       
             <div id="mypost" class="col-md-8 panel-default" ng-repeat="post in myposts">
-                <div id="eli-style-heading" class="panel-heading"><% post.title %></div>
+                <div id="eli-style-heading" class="panel-heading"><% post.user.name %></div>
                     <div class="panel-body panel">
                         <figure>
                             <p> <% post.body %></p>
-                           <p> by: <% post.user.name %></p>
                            <p>  <% post.created_at %></p>
                            
                         </figure>
                         <span>
+            @foreach($posts as $post)
+                @if(Auth::user()->can('delete',$post) )
+                 <i style="color:red;" class="glyphicon glyphicon-remove" ng-click="deletePost(post)">
+                 </i>
+                @endif
+            @endforeach
 
-                    
-                    @foreach($posts as $post)
-                        @if(Auth::user()->can('delete',$post))
-                         <button ng-click="deletePost(post)">x</button>
-                        @endif
-                    @endforeach
 
                         </span>
                     </div>
