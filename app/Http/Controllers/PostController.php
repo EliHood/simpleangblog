@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use App\Policies\TaskPolicy; // in App/Providers/AuthServiceProvider.php
+
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -97,13 +100,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy(Post $post){
         
-            Post::destroy($id);
-    
+        $this->authorize('delete', $post);
 
+        if ($post->delete()) {
+            return response()->json(['message' => 'deleted']);
+        };
 
-    
+        return response()->json(['error' => 'something went wrong'], 400);
     }
 }

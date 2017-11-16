@@ -27,9 +27,9 @@ class HomeController extends Controller
     public function index()
     {
 
+        $posts = Post::with('user')->get();
 
-
-        return view('home');
+        return view('home', compact('posts'));
    
     }
 

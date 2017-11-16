@@ -38,9 +38,13 @@
                         </figure>
                         <span>
 
-                         @if (Auth::user())
+                    
+                    @foreach($posts as $post)
+                        @if(Auth::user()->can('delete',$post))
                          <button ng-click="deletePost(post)">x</button>
                         @endif
+                    @endforeach
+
                         </span>
                     </div>
             </div>
