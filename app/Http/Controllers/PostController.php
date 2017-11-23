@@ -76,9 +76,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return response($post);
     }
 
     /**
@@ -88,9 +89,21 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Post $post)
     {
         //
+        $data = request()->validate([
+            'body' => 'required|string'
+        ]);
+
+
+        $post->update($data);
+
+        $response = new Response(json_encode($post));
+        $response->headers->set('Content-Type', 'application/json'); 
+
+        return $response;
+
     }
 
     /**

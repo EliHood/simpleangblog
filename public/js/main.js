@@ -7,8 +7,9 @@ app.config(function($interpolateProvider) {
 
 
 
-app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filter,  $http){
 
+
+app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filter,  $http){
 
 
 
@@ -46,21 +47,23 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 
 	};
 
-	$scope.getPosts = function(){
 
-		$http.get('/auth/posts').then(function(data){
-			$scope.myposts = data.data;
-		}).then(function(data, status, header, config){
-		});
+		$scope.getPosts = function(){ 
+
+		$http.get('/auth/posts').then(function(data){ 
+		$scope.myposts = data.data; 
+		console.log(data.data); 
+		}).then(function(data, status, header, config){ 
+		}); 
 
 
 
-	};
+		}; 
 
+
+		$scope.getPosts();
 
 	$scope.getPosts();
-
-
 
 
 

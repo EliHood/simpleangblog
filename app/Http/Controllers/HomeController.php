@@ -27,10 +27,12 @@ class HomeController extends Controller
     public function index()
     {
 
-        $posts = Post::with('user')->get();
+        $posts = Post::with('user')->get()->map(function(Post $post){ 
+        return collect($post->toArray())->put('deletable', auth()->user()->can('delete', $post)); 
+        });
 
-        return view('home', compact('posts'));
-   
+       
+        return view('home');
     }
 
     public function getPosts()
@@ -39,7 +41,9 @@ class HomeController extends Controller
         $posts = Post::with('user')->get();
         $response = new Response(json_encode($posts));
         $response->headers->set('Content-Type', 'application/json'); 
-        return $response;
+        return response()->json(Post::with('user')->get()->map(function(Post $post){ 
+            return collect($post->toArray())->put('deletable', auth()->user()->can('delete', $post)); 
+        })); 
     }
 
     

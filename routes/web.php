@@ -22,9 +22,12 @@ Route::get('auth/posts', 'HomeController@getPosts');
 Route::post('auth/post', 'PostController@storePost')->name('add.post');
 Route::delete('auth/post/{post}', 'PostController@destroy');
 
+Route::put('auth/post/', 'PostController@update')->name('update.post');
+
 
 
 Route::get('auth/login', 'UserController@getLogin')->name('login');
 Route::post('auth/login', 'UserController@userSignIn')->name('signin');
 Route::get('auth/register', 'UserController@getRegister')->name('register');
 Route::post('auth/register', 'UserController@userSignUp')->name('signup');
+
