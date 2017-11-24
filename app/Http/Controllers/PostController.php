@@ -78,6 +78,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+
+
         $post = Post::find($id);
         return response($post);
     }
@@ -97,6 +99,8 @@ class PostController extends Controller
         ]);
 
 
+        $this->authorize('update', $post);
+        
         $post->update($data);
 
         $response = new Response(json_encode($post));

@@ -27,26 +27,35 @@ class HomeController extends Controller
     public function index()
     {
 
-        $posts = Post::with('user')->get()->map(function(Post $post){ 
-        return collect($post->toArray())->put('deletable', auth()->user()->can('delete', $post)); 
-        });
+    
 
        
         return view('home');
     }
 
+
     public function getPosts()
     {
-
         $posts = Post::with('user')->get();
         $response = new Response(json_encode($posts));
         $response->headers->set('Content-Type', 'application/json'); 
-        return response()->json(Post::with('user')->get()->map(function(Post $post){ 
-            return collect($post->toArray())->put('deletable', auth()->user()->can('delete', $post)); 
-        })); 
+       
+
+        $data = $posts->map(function(Post $post)
+        { 
+            $user = auth()->user();
+            
+            if($user->can('delete', $post)) {
+                $post['deletable'] = true;
+            }
+
+            if($user->can('update', $post)) {
+                $post['update'] = true;
+            }
+            return $post;
+        });
+
+        return response()->json($data); 
     }
-
-    
-
     
 }

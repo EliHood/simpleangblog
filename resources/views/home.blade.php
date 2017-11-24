@@ -7,7 +7,7 @@
                 <div class="panel-heading">Dashboard</div>
             </div>
             <div class="panel panel-default">
-                <div id="eli-style-heading" class="panel-heading">Write a Post</div>
+                <div id="eli-style-heading" class="panel-heading">Twit Something</div>
                 <div class="panel-body">
                     <form ng-model="postForm" name="postform" method="POST" novalidate>
                         {{ csrf_field() }}
@@ -27,16 +27,18 @@
 
                     <figure>
                         <p ng-model="post.body" editable-text="post.body" e-form="textBtnForm"> <% post.body %></p>
-                        <p>  <% post.created_at %></p>
+                        <p>   <% post.created_at %></p>
                     </figure>
                     <span>
                        
                      <i style="color:red;" class="glyphicon glyphicon-remove" ng-click="deletePost(post)" ng-if="post.deletable"></i>
-                      
-                          <button class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
-                            edit
+               
+    
+                          <button ng-if="post.update" class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
+                            Edit
                           </button>
-                        <span><button type="submit" class="btn btn-primary" ng-click="updatePost(post)">Update</button></span>
+              
+                        <span><button ng-if="post.update" type="submit" class="btn btn-primary" ng-click="updatePost(post)">Update</button></span>
                     </span>
                 </div>
             </div>
