@@ -22,7 +22,7 @@ Route::get('auth/posts', 'HomeController@getPosts');
 Route::post('auth/post', 'PostController@storePost')->name('add.post');
 Route::delete('auth/post/{post}', 'PostController@destroy');
 
-Route::put('auth/post/', 'PostController@update')->name('update.post');
+Route::post('auth/upost/{post}', 'PostController@update')->name('update.post');
 
 
 

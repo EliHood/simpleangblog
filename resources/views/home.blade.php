@@ -24,15 +24,19 @@
             <div id="mypost" class="col-md-8 panel-default" ng-repeat="post in myposts ">
                 <div id="eli-style-heading" class="panel-heading"><% post.user.name %></div>
                 <div class="panel-body panel">
+
                     <figure>
-                        <p> <% post.body %></p>
+                        <p ng-model="post.body" editable-text="post.body" e-form="textBtnForm"> <% post.body %></p>
                         <p>  <% post.created_at %></p>
                     </figure>
                     <span>
                        
                      <i style="color:red;" class="glyphicon glyphicon-remove" ng-click="deletePost(post)" ng-if="post.deletable"></i>
                       
-                        <span><a href="/" data-toggle="modal" data-target="#editModal">Edit</a></span>
+                          <button class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
+                            edit
+                          </button>
+                        <span><button type="submit" class="btn btn-primary" ng-click="updatePost(post)">Update</button></span>
                     </span>
                 </div>
             </div>

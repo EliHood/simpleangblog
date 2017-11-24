@@ -1,4 +1,8 @@
-var app = angular.module('eli', []);
+
+
+
+
+var app = angular.module('eli', ["xeditable"]);
 
 app.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<%');
@@ -6,7 +10,9 @@ app.config(function($interpolateProvider) {
 });
 
 
-
+app.run(function(editableOptions) {
+  editableOptions.theme = 'bs3';
+});
 
 
 app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filter,  $http){
@@ -36,6 +42,23 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 
 	};
 
+	$scope.updatePost = function(post){
+		
+		$http.post('/auth/upost/' + post.id, {
+		 	body: post.body
+
+		}).then(function(data, status, headers, config){
+			console.log(data);	
+			
+		
+		});
+
+		
+
+
+	};
+
+
 	$scope.deletePost = function(post){
 		var index = $scope.myposts.indexOf(post);
 
@@ -48,20 +71,17 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	};
 
 
-		$scope.getPosts = function(){ 
+	$scope.getPosts = function(){ 
 
 		$http.get('/auth/posts').then(function(data){ 
-		$scope.myposts = data.data; 
-		console.log(data.data); 
-		}).then(function(data, status, header, config){ 
-		}); 
-
-
-
+			$scope.myposts = data.data; 
+				console.log(data.data); 
+					}).then(function(data, status, header, config){ 
+				}); 
 		}; 
 
 
-		$scope.getPosts();
+	
 
 	$scope.getPosts();
 
