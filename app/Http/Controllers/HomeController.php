@@ -40,11 +40,11 @@ class HomeController extends Controller
         $response = new Response(json_encode($posts));
         $response->headers->set('Content-Type', 'application/json'); 
        
-
+    
         $data = $posts->map(function(Post $post)
         { 
             $user = auth()->user();
-            
+
             if($user->can('delete', $post)) {
                 $post['deletable'] = true;
             }

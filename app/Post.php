@@ -13,8 +13,11 @@ class Post extends Authenticatable
     protected $fillable = [
         'title',
         'body',
-        'user_id'
+        'user_id',
+        'created_at'
     ];
+
+
 
 
     public function user()

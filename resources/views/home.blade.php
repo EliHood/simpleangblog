@@ -5,6 +5,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
+
             </div>
             <div class="panel panel-default">
                 <div id="eli-style-heading" class="panel-heading">Twit Something</div>
@@ -24,10 +25,11 @@
             <div id="mypost" class="col-md-8 panel-default" ng-repeat="post in myposts ">
                 <div id="eli-style-heading" class="panel-heading"><% post.user.name %></div>
                 <div class="panel-body panel">
+                 
 
                     <figure>
                         <p ng-model="post.body" editable-text="post.body" e-form="textBtnForm"> <% post.body %></p>
-                        <p>   <% post.created_at %></p>
+                        <p>   <% post.created_at | phpDate : "human" %></p>
                     </figure>
                     <span>
                        

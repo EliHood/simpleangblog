@@ -46,6 +46,9 @@ class PostController extends Controller
 
         $data['user_id'] = auth()->user()->id;
         $data['name'] = auth()->user()->name;
+        $owl = new Post();
+        $data['created_at'] = $owl->created_at;
+
 
 
         $post = Post::create($data);
