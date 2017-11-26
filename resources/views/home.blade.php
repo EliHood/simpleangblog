@@ -29,7 +29,7 @@
 
                     <figure>
                         <p ng-model="post.body" editable-text="post.body" e-form="textBtnForm"> <% post.body %></p>
-                        <p>   <% post.created_at | phpDate : "human" %></p>
+                        <p name="created_at" ng-model="post.created_at">   <% post.user.created_at | phpDate : "human" %></p>
                     </figure>
                     <span>
                        

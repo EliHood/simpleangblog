@@ -19,10 +19,11 @@ app.run(function(editableOptions) {
 app.filter('phpDate', function() {
     return function(input, format) {
 
+  	
         
         if (format == "human") {
-            // Special case for formatting. If user asks for "human" format
-            // return a value like "13 minutes ago" or "2 weeks ago" etc.
+   
+
             return moment(input).startOf(input).fromNow(); 
         } else {
             // Covert the moment to a string using the passed format
@@ -38,24 +39,21 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 
 	$scope.myposts = [];
 
-	$scope.addPost = function(){
-		
-		$http.post('/auth/post', {
-			body: $scope.post.body, 
-		}).then(function(data, status, headers, config){
-			console.log(data);	
-			data.data['user'] = {
-		    	name: data.data.name
-			},
+	$scope.addPost = function(){    
+	    $http.post('/auth/post', {
+	        body: $scope.post.body, 
+	    }).then(function(data, status, headers, config){
+	        console.log(data);  
+	        data.data['user'] = {
+	            name: data.data.name,
+	            created_at: moment().valueOf()
+	        },
 
-			$scope.myposts.push(data.data);
-			
-		
-		});
+	        $scope.myposts.push(data.data);
 
-		$scope.post.body = '';
+	    });
 
-
+	    $scope.post.body = '';
 	};
 
 	$scope.updatePost = function(post){
