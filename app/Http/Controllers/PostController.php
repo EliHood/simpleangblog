@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use App\Like;
 use App\Policies\TaskPolicy; // in App/Providers/AuthServiceProvider.php
 
 
@@ -21,6 +22,36 @@ class PostController extends Controller
     {
         //
     }
+
+    public function isLikedByMe($id)
+    {
+        if (Like::whereUserId(auth()->user()->id)
+                 ->wherePostId($id)->exists()){
+            return 'true';
+        }
+        return 'false';
+    }
+
+    public function like(Post $post, Request $request)
+    {
+        $existing_like = Like::withTrashed()->wherePostId($post->id)->whereUserId(auth()->id())->first();
+
+        if (is_null($existing_like)) {
+            Like::create([
+                'post_id' => $post->id,
+                'user_id' => auth()->user()->id
+            ]);
+
+
+        } else {
+            if (is_null($existing_like->deleted_at)) {
+                $existing_like->delete();
+            } else {
+                $existing_like->restore();
+            }
+        }
+    }
+
 
     /**
      * Show the form for creating a new resource.

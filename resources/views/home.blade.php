@@ -24,9 +24,15 @@
      
             <div id="mypost" class="col-md-8 panel-default" ng-repeat="post in myposts ">
                 <div id="eli-style-heading" class="panel-heading"><% post.user.name %></div>
-                <div class="panel-body panel">
-                 
+                <div class="panel-body panel" ng-init="getLikeText(post)">  
 
+                     
+                <i style="color:tomato; float:right; font-size:24px;" ng-click="like(post); toggle = !toggle" 
+                ng-class="{[heart] : !post.likedByMe, [noheart]: post.likedByMe }">
+                    <span style="font-size:16px; margin:10px 0px; ">   </span>
+                </i>
+                
+           
                     <figure>
                         <p ng-model="post.body" editable-text="post.body" e-form="textBtnForm"> <% post.body %></p>
                         <p name="created_at" ng-model="post.created_at">   <% post.user.created_at | phpDate : "human" %></p>

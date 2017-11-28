@@ -34,13 +34,19 @@ class HomeController extends Controller
     }
 
 
+
     public function getPosts()
     {
-        $posts = Post::with('user')->get();
+        $posts = Post::with('user')
+                     ->with(['likes' => function ($query) {
+                                $query->whereNull('deleted_at');
+                                $query->where('user_id', auth()->user()->id);
+                            }])
+                        ->get();
         $response = new Response(json_encode($posts));
         $response->headers->set('Content-Type', 'application/json'); 
        
-    
+
         $data = $posts->map(function(Post $post)
         { 
             $user = auth()->user();
@@ -52,6 +58,9 @@ class HomeController extends Controller
             if($user->can('update', $post)) {
                 $post['update'] = true;
             }
+             
+            $post['likedByMe'] = $post->likes->count() == 0 ? false : true;
+            
             return $post;
         });
 

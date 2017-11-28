@@ -39,6 +39,8 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 
 	$scope.myposts = [];
 
+	
+
 	$scope.addPost = function(){    
 	    $http.post('/auth/post', {
 	        body: $scope.post.body, 
@@ -55,6 +57,55 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 
 	    $scope.post.body = '';
 	};
+
+
+		
+      	
+$scope.like = function(post) {
+            $http.post('/post/like/'+ post.id).then(function(result) {
+                post.likedByMe = !post.likedByMe;
+            });
+        };
+     
+
+
+$scope.getLike = function(post){ 
+
+	$http.get('/post/'+ post.id +'/islikedbyme').then(function(result) { 
+
+		console.log("result for postId = "+post.id+" is " +result.data);
+
+
+    
+	    if (result.data === 'true') { 
+		    console.log("Unlike block !!!!!"); 
+		    $scope.like_btn_text = "Unlike"; 
+	    } else{ 
+		    console.log("Like block !!!!!"); 
+		    $scope.like_btn_text = "Like"; 
+		 }
+	}); 
+}
+
+		  
+
+
+	$scope.getLikeText = function(post){
+        console.log("getLikeText for postId = "+post.id+ " post.likedByme = "+post.likedByMe);
+		console.log("post.likedByMe === true returns "+ (post.likedByMe === true));
+
+        $scope.toggle = post.likedByMe === true;
+    }
+
+
+
+        $scope.noheart = 'glyphicon glyphicon-heart-empty';
+        $scope.heart = 'glyphicon glyphicon-heart';
+
+  
+       
+    
+        
 
 	$scope.updatePost = function(post){
 		
