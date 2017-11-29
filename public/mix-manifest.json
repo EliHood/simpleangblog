@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/animate.css": "/css/animate.css",
     "/js/moment-timezone-with-data-2012-2022.min.js": "/js/moment-timezone-with-data-2012-2022.min.js",
     "/js/angular-moment.js": "/js/angular-moment.js",
     "/js/moment.js": "/js/moment.js"

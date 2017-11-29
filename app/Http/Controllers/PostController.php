@@ -99,7 +99,8 @@ class PostController extends Controller
 
         $post = Post::create($data);
         $data['id'] = $post->id;
-        $data['created_at'] = $post->created_at;
+        $data['createdAt'] = $post->created_at->diffForHumans();
+            
 
         $response = new Response(json_encode($data));
         $response->headers->set('Content-Type', 'application/json'); 

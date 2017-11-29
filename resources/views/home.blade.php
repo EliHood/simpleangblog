@@ -2,9 +2,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2 ">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading ">Dashboard</div>
 
             </div>
             <div class="panel panel-default">
@@ -22,12 +22,12 @@
             </div>
             
      
-            <div id="mypost" class="col-md-8 panel-default" ng-repeat="post in myposts ">
+            <div id="mypost" class="col-md-8 panel-default animated zoomIn" ng-repeat="post in myposts ">
                 <div id="eli-style-heading" class="panel-heading"><% post.user.name %></div>
                 <div class="panel-body panel" ng-init="getLikeText(post); getLikecount(post)">  
 
                      
-                <i style="color:tomato; float:right; font-size:24px;" ng-click="like(post); toggle = !toggle; post.likeCount = post.likeCount =+ 1" 
+                <i style="color:tomato; float:right; font-size:24px;" ng-click="like(post); toggle = !toggle; post.likeCount = post.likeCount =+ 1; " 
                 ng-class="{[noheart] : !post.likedByMe, [heart]: post.likedByMe }">
                     <h3 style="font-size:20px; margin:20px 0px; text-align:center;"> <% post.likeCount %>  </h3>
                 </i>
@@ -35,7 +35,7 @@
            
                     <figure>
                         <p ng-model="post.body" editable-text="post.body" e-form="textBtnForm"> <% post.body %></p>
-                        <p name="created_at" ng-model="post.created_at">   <% post.user.created_at | phpDate : "human" %></p>
+                        <p name="created_at" ng-model="post.created_at"> <% post.createdAt %></p>
                     </figure>
                     <span>
                        

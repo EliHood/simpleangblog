@@ -47,8 +47,7 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	    }).then(function(data, status, headers, config){
 	        console.log(data);  
 	        data.data['user'] = {
-	            name: data.data.name,
-	            created_at: moment().valueOf()
+	            name: data.data.name
 	        },
 
 	        $scope.myposts.push(data.data);
@@ -73,7 +72,7 @@ $scope.getLikecount = function(post){
 
 
 		if(result.data >= 1)
-		{
+		{	
 			post.likeCount = result.data;
 			$scope.likeCount = post.likeCount;
 		}
