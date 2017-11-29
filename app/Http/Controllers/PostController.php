@@ -153,10 +153,15 @@ class PostController extends Controller
     public function destroy(Post $post){
         
         $this->authorize('delete', $post);
+        $postl =  Post::with('likes')->whereId($post)->delete();
 
         if ($post->delete()) {
+    
             return response()->json(['message' => 'deleted']);
-        };
+             
+        }
+
+
 
         return response()->json(['error' => 'something went wrong'], 400);
     }
