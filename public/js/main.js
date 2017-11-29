@@ -74,7 +74,8 @@ $scope.getLikecount = function(post){
 
 		if(result.data >= 1)
 		{
-			$scope.likeCount = result.data;
+			post.likeCount = result.data;
+			$scope.likeCount = post.likeCount;
 		}
 		
 

@@ -60,6 +60,7 @@ class HomeController extends Controller
             }
              
             $post['likedByMe'] = $post->likes->count() == 0 ? false : true;
+            $post['likesCount'] = $post->likes->count();
             
             
             return $post;
