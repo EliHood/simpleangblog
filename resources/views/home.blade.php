@@ -27,9 +27,9 @@
                 <div class="panel-body panel" ng-init="getLikeText(post); getLikecount(post)">  
 
                      
-                <i style="color:tomato; float:right; font-size:24px;" ng-click="like(post); toggle = !toggle; post.likeCount = post.likeCount =+ 1; " 
+                <i style="color:tomato; float:right; font-size:24px;" ng-click="like(post); toggle = !toggle" 
                 ng-class="{[noheart] : !post.likedByMe, [heart]: post.likedByMe }">
-                    <h3 style="font-size:20px; margin:20px 0px; text-align:center;"> <% post.likeCount %>  </h3>
+                    <h3 style="font-size:20px; margin:20px 0px; text-align:center;"  ng-bind="post.likesCount">   </h3>
                 </i>
                 
            

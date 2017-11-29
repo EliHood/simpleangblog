@@ -60,27 +60,20 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 
 		
       	
-		$scope.like = function(post) {
-            $http.post('/post/like/'+ post.id).then(function(result) {
-                post.likedByMe = !post.likedByMe;
-            });
-        };
-     
-
-$scope.getLikecount = function(post){
-	$http.get('post/'+post.id+'/getTotalLikes').then(function(result){
 
 
-		if(result.data >= 1)
-		{	
-			post.likeCount = result.data;
-			$scope.likeCount = post.likeCount;
-		}
-		
-
-	});
-
+$scope.like = function(post) {
+    $http.post('/post/like/'+ post.id).then(function(result) {
+        post.likedByMe = !post.likedByMe;
+        if (post.likedByMe) {
+        	post.likesCount++;
+        } else {
+        	post.likesCount--;
+        }
+        $scope.likeCount = post.likeCount;
+    });
 };
+
 
 
 $scope.getLike = function(post){ 
