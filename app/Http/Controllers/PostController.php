@@ -92,13 +92,14 @@ class PostController extends Controller
         $data['user_id'] = auth()->user()->id;
         $data['name'] = auth()->user()->name;
         $owl = new Post();
-        $data['created_at'] = $owl->created_at;
+        
 
 
 
 
         $post = Post::create($data);
         $data['id'] = $post->id;
+        $data['created_at'] = $post->created_at;
 
         $response = new Response(json_encode($data));
         $response->headers->set('Content-Type', 'application/json'); 
