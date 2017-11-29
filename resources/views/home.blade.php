@@ -29,7 +29,7 @@
                      
                 <i style="color:tomato; float:right; font-size:24px;" ng-click="like(post); toggle = !toggle" 
                 ng-class="{[noheart] : !post.likedByMe, [heart]: post.likedByMe }">
-                    <span style="font-size:16px; margin:10px 0px;">   </span>
+                    <h3 style="font-size:24px; margin:20px 0px; text-align:center;"> <% likeCount %>  </h3>
                 </i>
                 
            

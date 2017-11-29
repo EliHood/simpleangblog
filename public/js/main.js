@@ -71,7 +71,12 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 $scope.getLikecount = function(post){
 	$http.get('post/'+post.id+'/getTotalLikes').then(function(result){
 
-		console.log("likes:"+result.data);
+
+		if(result.data >= 1)
+		{
+			$scope.likeCount = result.data;
+		}
+		
 
 	});
 

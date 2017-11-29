@@ -41,8 +41,11 @@ class PostController extends Controller
             return $likes->count();
         }
         return 'no likes';
+
+
+
     }
-        
+
     public function like(Post $post, Request $request)
     {
         $existing_like = Like::withTrashed()->wherePostId($post->id)->whereUserId(auth()->id())->first();
