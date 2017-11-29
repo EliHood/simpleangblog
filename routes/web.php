@@ -27,6 +27,8 @@ Route::post('auth/upost/{post}', 'PostController@update')->name('update.post');
 Route::get('post/{id}/islikedbyme', 'PostController@isLikedByMe');
 Route::post('post/like/{post}', 'PostController@like');
 
+Route::get('post/getTotalLikes', 'PostController@getTotalLikes');
+
 Route::get('auth/login', 'UserController@getLogin')->name('login');
 Route::post('auth/login', 'UserController@userSignIn')->name('signin');
 Route::get('auth/register', 'UserController@getRegister')->name('register');

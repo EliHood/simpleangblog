@@ -61,12 +61,21 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 
 		
       	
-$scope.like = function(post) {
+		$scope.like = function(post) {
             $http.post('/post/like/'+ post.id).then(function(result) {
                 post.likedByMe = !post.likedByMe;
             });
         };
      
+
+$scope.getLikecount = function(post){
+	$http.get('post/getTotalLikes').then(function(result){
+
+		console.log("likes:"+result.data);
+
+	});
+
+};
 
 
 $scope.getLike = function(post){ 

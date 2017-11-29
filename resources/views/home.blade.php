@@ -24,12 +24,12 @@
      
             <div id="mypost" class="col-md-8 panel-default" ng-repeat="post in myposts ">
                 <div id="eli-style-heading" class="panel-heading"><% post.user.name %></div>
-                <div class="panel-body panel" ng-init="getLikeText(post)">  
+                <div class="panel-body panel" ng-init="getLikeText(post); getLikecount(post)">  
 
                      
                 <i style="color:tomato; float:right; font-size:24px;" ng-click="like(post); toggle = !toggle" 
                 ng-class="{[noheart] : !post.likedByMe, [heart]: post.likedByMe }">
-                    <span style="font-size:16px; margin:10px 0px; "> <% post.likes.count %>   </span>
+                    <span style="font-size:16px; margin:10px 0px;">   </span>
                 </i>
                 
            

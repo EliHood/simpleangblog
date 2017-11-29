@@ -31,7 +31,7 @@ class Post extends Authenticatable
          return $this->belongsToMany('App\User', 'likes');
     }
 
-
+    
 
 
 
