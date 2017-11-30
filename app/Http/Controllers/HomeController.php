@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+
 use App\Post;
+use App\Like;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
@@ -60,8 +62,7 @@ class HomeController extends Controller
             }
              
             $post['likedByMe'] = $post->likes->count() == 0 ? false : true;
-            $post['likesCount'] = $post->likes->count();
-
+            $post['likesCount'] = Like::where('post_id', $post->id)->get()->count();
             $post['createdAt'] = $post->created_at->diffForHumans();
             
             

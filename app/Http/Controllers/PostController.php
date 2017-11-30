@@ -33,18 +33,7 @@ class PostController extends Controller
     }
 
 
-    public function getTotalLikes(Post $post)
-    {
-        $likes = Like::where('post_id', $post->id)->get();
 
-        if($likes->count()){
-            return $likes->count();
-        }
-        return 'no likes';
-
-
-
-    }
 
     public function like(Post $post, Request $request)
     {
