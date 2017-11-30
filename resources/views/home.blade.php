@@ -22,7 +22,7 @@
             </div>
             
      
-            <div id="mypost" class="col-md-8 panel-default animated zoomIn" ng-repeat="post in myposts ">
+            <div id="mypost" class="col-md-8 panel-default" ng-repeat="post in myposts ">
                 <div id="eli-style-heading" class="panel-heading"><a class="link_profile" href="/profile/<% post.user.name | lowercase %>"><% post.user.name %></a></div>
                 <div class="panel-body panel" ng-init="getLikeText(post); getLikecount(post)">  
 

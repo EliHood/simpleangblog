@@ -32,10 +32,7 @@ class PostController extends Controller
         return 'false';
     }
 
-    public function getTotalLikes(Post $post)
-    {
-        return Like::where('post_id', $post->id)->get()->count();
-    }
+
 
 
     public function like(Post $post, Request $request)

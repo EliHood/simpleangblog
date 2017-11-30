@@ -32,16 +32,16 @@ class Post extends Authenticatable
     }
 
 
+
     public function likedByMe()
     {
         foreach($this->likes as $like) {
             if ($like->user_id == auth()->id()){
-                return true;
+                return 'true';
             }
         }
-        return false;
+        return 'false';
     }
-    
 
 
 
