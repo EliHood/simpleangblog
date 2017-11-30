@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Http\Response;
 
 use App\User;
 
@@ -76,4 +76,19 @@ class UserController extends Controller
             ->withMessage('See you soon!');
     
     }
+
+    public function getProfile($user)
+    {
+        $user = User::where('name','=', $user)->first();
+
+        if(!$user){
+
+            $response = new Response(json_encode($user));
+            $response->headers->set('Content-Type', 'application/json');    
+
+            return redirect('404');
+        }
+        return view ('/profile')->withUser($user);
+    }
+
 }

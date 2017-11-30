@@ -29,6 +29,7 @@ Route::post('post/like/{post}', 'PostController@like');
 
 
 Route::get('post/{post}/getTotalLikes', 'PostController@getTotalLikes');
+Route::get('profile/{user}', 'UserController@getProfile')->middleware('auth')->name('profile');
 
 Route::get('auth/login', 'UserController@getLogin')->name('login');
 Route::post('auth/login', 'UserController@userSignIn')->name('signin');

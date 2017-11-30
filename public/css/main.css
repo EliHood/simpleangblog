@@ -33,3 +33,14 @@ i{
 	margin:0px !important;
 	padding: 0px !important;
 }
+
+.link_profile{
+	text-decoration: none;
+	color: #fff;
+
+}
+
+.link_profile:hover{
+	text-decoration: none;
+	color: #fff;
+}
