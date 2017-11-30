@@ -141,10 +141,16 @@ class PostController extends Controller
 
 
         $this->authorize('update', $post);
+
         
         $post->update($data);
+        $data['id'] = $post->id;
+        $data['updatedAt'] = $post->updated_at->diffForHumans();
 
-        $response = new Response(json_encode($post));
+
+
+
+        $response = new Response(json_encode($data));
         $response->headers->set('Content-Type', 'application/json'); 
 
         return $response;

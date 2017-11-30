@@ -34,8 +34,8 @@
                 
            
                     <figure>
-                        <p ng-model="post.body" editable-text="post.body" e-form="textBtnForm"> <% post.body %></p>
-                        <p name="created_at" ng-model="post.created_at"> <% post.createdAt %></p>
+                        <p class="mybody2" ng-model="post.body" editable-text="post.body" e-form="textBtnForm"> <% post.body %></p>
+                        <p name="createdAt" > <% post.createdAt %>  </p>
                     </figure>
                     <span>
                        

@@ -117,10 +117,15 @@ $scope.getLike = function(post){
 	$scope.updatePost = function(post){
 		
 		$http.post('/auth/upost/' + post.id, {
-		 	body: post.body
+		 	body: post.body,
+		 	updatedAt:post.updatedAt
 
-		}).then(function(data, status, headers, config){
-			console.log(data);	
+		}).then(function(result, status, headers, config){
+			
+			 $scope.updatedAt = result.data.updatedAt;
+			 console.log($scope.updatedAt);
+			 $scope.myposts.push($scope.updatedAt);
+
 			
 		
 		});
