@@ -31,6 +31,16 @@ class Post extends Authenticatable
          return $this->belongsToMany('App\User', 'likes');
     }
 
+
+    public function likedByMe()
+    {
+        foreach($this->likes as $like) {
+            if ($like->user_id == auth()->id()){
+                return true;
+            }
+        }
+        return false;
+    }
     
 
 

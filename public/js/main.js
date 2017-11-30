@@ -36,7 +36,26 @@ app.filter('phpDate', function() {
 
 app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filter,  $http){
 
+$scope.userposts = [];
 
+	$scope.getUserPosts = function(post){
+
+		$http.get('/auth/userposts/timmy').then(function(result){ 
+
+			$scope.myposts = data.data;
+					
+			}).then(function(result){
+				
+				
+					
+			});
+
+
+	
+	};
+
+	
+$scope.getUserPosts();
 
 
 	$scope.myposts = [];

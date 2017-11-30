@@ -72,5 +72,44 @@ class HomeController extends Controller
 
         return response()->json($data); 
     }
+
+    public function getuserPosts($user)
+    {
+       $author = User::where('name','=', $user)->first();
+       $posts = $author->posts()
+                       ->with(['likes' => function ($query) {
+                                $query->whereNull('deleted_at');
+                                $query->where('user_id', auth()->user()->id);
+                            }])
+                        ->get();
+        $response = new Response(json_encode($posts));
+        $response->headers->set('Content-Type', 'application/json'); 
+       
+        
+
+
+        $data = $posts->map(function(Post $post)
+        { 
+            $user = auth()->user();
+
+            if($user->can('delete', $post)) {
+                $post['deletable'] = true;
+            }
+
+            if($user->can('update', $post)) {
+                $post['update'] = true;
+            }
+             
+            $post['likedByMe'] = $post->likes->count() == 0 ? false : true;
+            $post['likesCount'] = Like::where('post_id', $post->id)->get()->count();
+            $post['createdAt'] = $post->created_at->diffForHumans();
+            $post['createdAt'] = $post->updated_at->diffForHumans();
+            
+            
+            return $post;
+        });
+
+        return response()->json($data); 
+    }
     
 }

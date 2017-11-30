@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('auth/posts', 'HomeController@getPosts');
+
+Route::get('auth/userposts/{user}', 'HomeController@getuserPosts');
+
 Route::post('auth/post', 'PostController@storePost')->name('add.post');
 Route::delete('auth/post/{post}', 'PostController@destroy');
 

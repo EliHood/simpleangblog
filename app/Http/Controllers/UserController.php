@@ -79,16 +79,14 @@ class UserController extends Controller
 
     public function getProfile($user)
     {
-        $user = User::where('name','=', $user)->first();
+        $user = User::with('posts.likes')
+                      ->where('name','=', $user)
+                      ->first();
 
         if(!$user){
-
-            $response = new Response(json_encode($user));
-            $response->headers->set('Content-Type', 'application/json');    
-
             return redirect('404');
         }
-        return view ('/profile')->withUser($user);
+        return view ('profile')->withUser($user);
     }
 
 }
