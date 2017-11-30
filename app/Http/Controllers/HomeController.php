@@ -79,7 +79,6 @@ class HomeController extends Controller
        $posts = $author->posts()
                        ->with(['likes' => function ($query) {
                                 $query->whereNull('deleted_at');
-                                $query->where('user_id', auth()->user()->id);
                             }])
                         ->get();
         $response = new Response(json_encode($posts));
@@ -100,8 +99,7 @@ class HomeController extends Controller
                 $post['update'] = true;
             }
              
-            $post['likedByMe'] = $post->likes->count() == 0 ? false : true;
-            $post['likesCount'] = Like::where('post_id', $post->id)->get()->count();
+            $post['likedByMe'] = $post->likedByMe();
             $post['createdAt'] = $post->created_at->diffForHumans();
             $post['createdAt'] = $post->updated_at->diffForHumans();
             
