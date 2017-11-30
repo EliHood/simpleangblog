@@ -124,8 +124,7 @@ $scope.getLike = function(post){
 			
 			 $scope.updatedAt = result.data.updatedAt;
 			 console.log($scope.updatedAt);
-			 $scope.myposts.push($scope.updatedAt);
-
+		
 			
 		
 		});
