@@ -2,7 +2,7 @@
 
 
 
-var app = angular.module('eli', ["xeditable", 'angularMoment']);
+var app = angular.module('eli', ["xeditable", 'angularMoment', 'angular-async-validation']);
 
 app.config(function($interpolateProvider) {
     $interpolateProvider.startSymbol('<%');
@@ -32,6 +32,28 @@ app.filter('phpDate', function() {
             return moment(input).startOf(input).fromNow(); 
         }
     };
+});
+
+
+app.directive('nameValidator', function($http, $q){
+	return{
+		require: 'ngModel',
+		link:function(scope, element, attrs, ngModel){
+			ngModel.$asyncValidators.name = function(modelValue, viewValue){
+				return $http.post('/nameCheck/'+ {name:viewValue}).then(
+					function(response){
+						if(!response.data.validName){
+							return $q.reject(response.data.errorMessage);
+						}
+						return true;
+					}
+
+				);
+
+			};
+		}
+	};
+
 });
 
 app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filter,  $http){

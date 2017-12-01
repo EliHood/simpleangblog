@@ -24,7 +24,7 @@
                 <div class="panel-body panel">
                     
                    <i style="color:tomato; float:right; font-size:24px;"
-    class="{{ $post->likedByMe() ? 'glyphicon glyphicon-heart' : 'glyphicon glyphicon-heart-empty' }}">
+    class="{{ $post->likedByMe() ? 'glyphicon glyphicon-heart' : 'glyphicon glyphicon-heart-empty' }}" >
                     <h3 style="font-size:20px; margin:20px 0px; text-align:center;" > {{ $post->likes->count() }}  </h3>
                     </i>
                     

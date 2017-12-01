@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 use App\User;
-
+use App\Post;
 
 
 class UserController extends Controller
@@ -21,6 +21,22 @@ class UserController extends Controller
     {
         return view('auth/login');
     }
+
+    public function checkName(Request $request, $name)
+    {
+        $existing_name = User::where('name', $name)->get();
+
+        $name = $request['name'];
+
+        if($name == $existing_name){
+            return 'name exists';
+
+        }
+        else{
+            return 'name available';
+        }
+    }
+
 
     public function userSignUp(Request $request)
     {
@@ -77,16 +93,19 @@ class UserController extends Controller
     
     }
 
-    public function getProfile($user)
-    {
-        $user = User::with('posts.likes')
-                      ->where('name','=', $user)
-                      ->first();
 
-        if(!$user){
-            return redirect('404');
-        }
-        return view ('profile')->withUser($user);
+    public function getProfile($user)
+        {
+            $user = User::with(['posts.likes' => function($query) {
+                                $query->whereNull('deleted_at');
+                            }])
+                          ->where('name','=', $user)
+                          ->first();
+
+            if(!$user){
+                return redirect('404');
+            }
+            return view ('profile')->withUser($user);
     }
 
 }

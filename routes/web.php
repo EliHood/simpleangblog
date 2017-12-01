@@ -30,6 +30,8 @@ Route::post('auth/upost/{post}', 'PostController@update')->name('update.post');
 Route::get('post/{id}/islikedbyme', 'PostController@isLikedByMe');
 Route::post('post/like/{post}', 'PostController@like');
 
+Route::post('/nameCheck/{name}', 'UserController@checkName');
+
 
 Route::get('post/{post}/getTotalLikes', 'PostController@getTotalLikes');
 Route::get('profile/{user}', 'UserController@getProfile')->middleware('auth')->name('profile');

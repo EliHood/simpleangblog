@@ -47,3 +47,10 @@ i{
 	text-decoration: none;
 	color: #fff;
 }
+
+.validation-error {
+  color: red;
+}
+.validation-pending {
+  color: orange;
+}

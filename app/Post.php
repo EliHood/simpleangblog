@@ -28,7 +28,7 @@ class Post extends Authenticatable
 
     public function likes()
     {
-         return $this->belongsToMany('App\User', 'likes');
+         return $this->hasMany('App\Like');
     }
 
 
@@ -37,10 +37,10 @@ class Post extends Authenticatable
     {
         foreach($this->likes as $like) {
             if ($like->user_id == auth()->id()){
-                return 'true';
+                return true;
             }
         }
-        return 'false';
+        return false;
     }
 
 

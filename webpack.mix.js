@@ -14,6 +14,7 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
    .copy('node_modules/animate.css/animate.css', 'public/css')
+   .copy('node_modules/angular-async-validation/dist/angular-async-validation.js', 'public/js')
    .copy('node_modules/moment-timezone/builds/moment-timezone-with-data-2012-2022.min.js', 'public/js')
    .copy('node_modules/angular-moment/angular-moment.js', 'public/js')
    .copy('node_modules/moment/moment.js', 'public/js');
