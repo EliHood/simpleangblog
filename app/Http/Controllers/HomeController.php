@@ -53,7 +53,7 @@ class HomeController extends Controller
 
                         ->get();
 
-        $data = $posts->map(function(Post $post )
+        $data = $posts->map(function(Post $post)
         { 
             $user = auth()->user();
 
@@ -65,19 +65,19 @@ class HomeController extends Controller
                 $post['update'] = true;
             }
 
-
-            if($user->comments()){
-                $post['commentt'] = true;
-            }
+            $comment = new Comment();
 
 
             $post['likedByMe'] = $post->likes->count() == 0 ? false : true;
             $post['likesCount'] = Like::where('post_id', $post->id)->get()->count();
             $post['createdAt'] = $post->created_at->diffForHumans();
             $post['createdAt'] = $post->updated_at->diffForHumans();
-            $post['comment_createdAt'] = $post->created_at->diffForHumans();
-            
+
             return $post;
+         
+
+         
+       
         });
 
 

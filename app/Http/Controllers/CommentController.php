@@ -36,6 +36,7 @@ class CommentController extends Controller
         $data['name'] = auth()->user()->name;
         $data['post_id'] = $post;
         $post = Comment::create($data);
+        // sets a time on a comment instantly im using angular :)
         $data['comment_createdAt'] = $post->created_at->diffForHumans();
 
 

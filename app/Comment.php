@@ -25,4 +25,9 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Post');
     }
+
+    public function getCreatedDateAttribute() 
+    {
+        return $this->created_at->diffForHumans();
+    }
 }
