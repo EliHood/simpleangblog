@@ -37,9 +37,10 @@
                             <p class="mybody2" ng-model="post.body" editable-text="post.body" e-form="textBtnForm"> <% post.body %></p>
                             <p name="post.created_at" ><% post.createdAt %> </p>
                         </figure>
-                        <span>
+                        <i style="color:red;" class="glyphicon glyphicon-remove" ng-click="deletePost(post)" ng-if="post.deletable"></i>
+                        <span style="float:right;">
                             
-                            <i style="color:red;" class="glyphicon glyphicon-remove" ng-click="deletePost(post)" ng-if="post.deletable"></i>
+                            
                             
                             
                             <button ng-if="post.update" class="btn btn-default" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible">
@@ -54,16 +55,17 @@
                             <a ng-click="writecomment =! writecomment"> Write A Comment </a>
                         </span>
                     </div>
-                    <div ng-show="comments" id="comments" class="col-md-offset-2  panel-default" ng-repeat="comment in post.comments">
+                    <div class="animated fadeIn" ng-show="comments" id="comments" class="col-md-offset-2  panel-default" ng-repeat="comment in post.comments">
                         <div style="font-size:10px;" id="eli-style-heading" class="panel-heading">
                           <a class="link_profile" href="/profile/<% comment.user.name | lowercase %>"><% comment.user.name %></a>
                         </div>
-                        <figure>
-                            <p class="my-comment"> <% comment.comment_body%>
+                        <figure class="my-comment">
+                            <p> <% comment.comment_body%>
 
                             </p>
-                            <hr>
-                            <p style="padding:10px;"><% comment.comment_createdAt %> </p>
+                          
+                            <p><% comment.comment_createdAt %> </p>
+                              <hr>
                         </figure>
                     </div>
                     <!-- Comment form Inside Ng-repeat -->
