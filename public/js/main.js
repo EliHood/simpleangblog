@@ -40,15 +40,15 @@ app.directive('nameValidator', function($http, $q){
 		require: 'ngModel',
 		link:function(scope, element, attrs, ngModel){
 			ngModel.$asyncValidators.name = function(modelValue, viewValue){
-				return $http.post('/nameCheck/'+ {name:viewValue}).then(
-					function(response){
-						if(!response.data.validName){
-							return $q.reject(response.data.errorMessage);
-						}
-						return true;
-					}
+				return  $http.post('/nameCheck', { name: viewValue}).then(
+                    function(response){
+                        if(!response.data.validName){
+                            return $q.reject(response.data.errorMessage);
+                        }
+                        return true;
+                    }
 
-				);
+                );
 
 			};
 		}
@@ -62,11 +62,11 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	
 
 
-
+	// scope data for posts
 	$scope.myposts = [];
 
 	
-
+	// Form that works outside of ng-repeat adding posts which works flawlessly
 	$scope.addPost = function(){    
 	    $http.post('/auth/post', {
 	        body: $scope.post.body, 
@@ -76,6 +76,8 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	            name: data.data.name
 	        },
 
+          
+
 	        $scope.myposts.push(data.data);
 
 	    });
@@ -83,9 +85,35 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	    $scope.post.body = '';
 	};
 
+	// comment form that doesnt work inside ng-repeat
 
-		
-      	
+	$scope.addComment = function(post){
+
+	    $http.post('/post/' + post.id +'/comment',{
+	        comment_body: post.comment,
+	    }).then(function(result){
+	        console.log(result.data);
+	       	result.data['user'] = {
+	            name: result.data.name
+	        },
+
+	       	post.comments.push(result.data);
+	        post.comment = '';
+	    });
+
+
+	};
+
+	$scope.comments = false;
+
+	$scope.commentShow = function(){
+
+		var owl = $scope.comments = true;
+
+
+	}
+    
+
 
 
 $scope.like = function(post) {
@@ -177,10 +205,12 @@ $scope.getLike = function(post){
 
 		$http.get('/auth/posts').then(function(data){ 
 
-				$scope.myposts = data.data;
+			$scope.myposts = data.data;
+
+
+				console.log($scope.myposts); 
+				}).then(function(result, status, header, config){ 
 				
-				console.log(data.data); 
-					}).then(function(data, status, header, config){ 
 				}); 
 		}; 
 

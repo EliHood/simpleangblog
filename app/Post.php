@@ -4,6 +4,7 @@ namespace App;
 
 use App\User;
 use App\Like;
+use App\Comment;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +16,8 @@ class Post extends Authenticatable
         'title',
         'body',
         'user_id',
-        'created_at'
+        'created_at',
+        
     ];
 
 
@@ -31,6 +33,10 @@ class Post extends Authenticatable
          return $this->hasMany('App\Like');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 
 
     public function likedByMe()

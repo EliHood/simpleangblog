@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\User;
 use App\Post;
-
+use App\Comment;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostPolicy
@@ -20,7 +20,17 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        //
+        
+    }
+
+    public function viewComment(User $user, Post $post)
+    {
+        $comment = Comment::with('user')->get();
+
+        if(!is_null($comment)){
+            return $comment;
+        }
+
     }
 
     /**

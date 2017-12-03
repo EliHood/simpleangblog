@@ -30,7 +30,10 @@ Route::post('auth/upost/{post}', 'PostController@update')->name('update.post');
 Route::get('post/{id}/islikedbyme', 'PostController@isLikedByMe');
 Route::post('post/like/{post}', 'PostController@like');
 
-Route::post('/nameCheck/{name}', 'UserController@checkName');
+Route::post('post/{post}/comment', 'CommentController@create');
+Route::get('comments', 'CommentController@index');
+
+Route::post('/nameCheck', 'UserController@checkName');
 
 
 Route::get('post/{post}/getTotalLikes', 'PostController@getTotalLikes');

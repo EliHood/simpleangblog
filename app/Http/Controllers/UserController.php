@@ -22,18 +22,18 @@ class UserController extends Controller
         return view('auth/login');
     }
 
-    public function checkName(Request $request, $name)
+    public function checkName(Request $request)
     {
-        $existing_name = User::where('name', $name)->get();
-
         $name = $request['name'];
 
-        if($name == $existing_name){
-            return 'name exists';
+        $existing_name = User::where('name', '=', $name)->first();
+
+        if($existing_name == NULL){
+            return 'name does not exists';
 
         }
         else{
-            return 'name available';
+            return 'name exists';
         }
     }
 

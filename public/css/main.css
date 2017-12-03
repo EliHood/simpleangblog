@@ -23,14 +23,49 @@
 
 .mybody2{
   word-wrap: break-word;
-  padding: 10px 0px;
+  padding: 30px 0px;
   width:600px;
+  font-size: 20px;
 }
 #mypost3{
 	margin:40px 0px;
 
 }
+.mybody3{
+  word-wrap: break-word;
+  padding: 10px 0px;
+  width:600px;
+}
+#comments{
+	background-color:#fff;
+	color:#333;
 
+
+
+}
+
+.comment-class{
+	margin: -10px!important;
+
+}
+
+.toggle-comments{
+	clear: both;
+	display: block;
+	color: #333;
+}
+
+.my-comment{
+	padding: 30px;
+	word-wrap:break-word;
+	font-size: 16px;
+
+}
+
+.toggle-comments a{
+	margin:0px 30px 0px 0px;
+	color: #333;
+}
 
 i{
 	margin:0px !important;
