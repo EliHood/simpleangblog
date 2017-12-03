@@ -48,6 +48,7 @@ class HomeController extends Controller
         
                             $query->with('user');
 
+
                         }])
 
                         ->get();
@@ -78,6 +79,8 @@ class HomeController extends Controller
             
             return $post;
         });
+
+
 
         return response()->json($data); 
     }

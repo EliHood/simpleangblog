@@ -55,7 +55,7 @@
                             <a ng-click="writecomment =! writecomment"> Write A Comment </a>
                         </span>
                     </div>
-                    <div class="animated fadeIn" ng-show="comments" id="comments" class="col-md-offset-2  panel-default" ng-repeat="comment in post.comments">
+                    <div ng-show="comments" id="comments" class="col-md-offset-2  animated fadeIn panel-default" ng-repeat="comment in post.comments">
                         <div style="font-size:10px;" id="eli-style-heading" class="panel-heading">
                           <a class="link_profile" href="/profile/<% comment.user.name | lowercase %>"><% comment.user.name %></a>
                         </div>
