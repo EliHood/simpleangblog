@@ -62,6 +62,26 @@ body{
     width: 700px;
 
 }
+#update-pic{
+	margin: 20px 0px;
+	padding: 20px 0px;
+	font-size: 20px;
+}
+
+#file{
+	display: block;
+}
+
+#pic-sub{
+	display: block;
+	text-align: center;
+	background-color: transparent;
+	border:2px solid #333;
+	padding: 10px 20px;
+	margin:20px 0px;
+	color: #333;
+}
+
 .comment-ng-repeat{
 	margin: 30px 0px;
 }
