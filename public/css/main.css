@@ -1,3 +1,8 @@
+body{
+	overflow-x:hidden;
+}
+
+
 #eli-style-heading{
 	background-color: #333;
 	color: #fff;
@@ -21,6 +26,17 @@
 
 }
 
+
+.image-style{
+    margin: 0px 50px;
+    display: inline-block !important;
+    width: 100px;
+}
+
+.pic-class{
+	display: inline-block;
+}
+
 .mybody2{
   word-wrap: break-word;
   padding: 30px 0px;
@@ -41,7 +57,11 @@
 	color:#333;
 
 }
+.profile-post{
+	display: inline-block !important;
+    width: 700px;
 
+}
 .comment-ng-repeat{
 	margin: 30px 0px;
 }
@@ -62,6 +82,8 @@
 	font-size: 16px;
 
 }
+
+
 
 .toggle-comments a{
 	margin:0px 30px 0px 0px;

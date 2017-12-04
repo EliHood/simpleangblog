@@ -7,10 +7,34 @@ use Illuminate\Http\Response;
 
 use App\User;
 use App\Post;
-
+use Image;
 
 class UserController extends Controller
 {
+
+    public function uploadpic(Request $request)
+    {   
+
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename ) );
+
+            $user = auth()->user();
+            $user->avatar = $filename;
+            $user->save();
+
+            return view('profile')->withUser($user);
+        }
+
+        if(!$user)
+        {
+            return redirect('/home');
+        }
+
+
+        
+    }
 
     public function getRegister()
     {
@@ -95,7 +119,7 @@ class UserController extends Controller
 
 
     public function getProfile($user)
-        {
+    {  
             $user = User::with(['posts.likes' => function($query) {
                                 $query->whereNull('deleted_at');
                             }])
@@ -105,6 +129,7 @@ class UserController extends Controller
             if(!$user){
                 return redirect('404');
             }
+
             return view ('profile')->withUser($user);
     }
 

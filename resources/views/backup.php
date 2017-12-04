@@ -1,15 +1,16 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 col-md-offset-2 ">
+    
+        <div class="row">
+
             @if ($errors->any())
             <div class="panel panel-danger">
                 <div class="panel-heading">{{$errors->first()}}</div>
             </div>
             @endif
-
-            <div class="col-md-4 ">
+            
+            <div class="col-md-4 offset-md-3 ">
                 <h1>{{ $user->name}} Profile</h1>
                 <img src="/uploads/avatars/{{ $user->avatar }}" style="width:150px; height:150px; border-radius:50%;">
                 @if(auth()->user()->id )
@@ -21,9 +22,9 @@
                 </form>
                 @endif
             </div>
-
+            
             @forelse ($user->posts as $post)
-            <div class="col-md-8">
+            <div class="col-lg-8 offset-md-3">
                 <div id="mypost3" class="col-md-8 panel-default">
                     <div id="eli-style-heading" class="panel-heading"><a class="link_profile" href="/profile/{{$post->user->name}}">{{$post->user->name}}</a></div>
                     <div class="panel-body panel">
@@ -45,10 +46,8 @@
             @empty
             <p>No posts so far !!</p>
             @endforelse
-
-
         </div>
     </div>
-    
+</div>
 </div>
 @endsection

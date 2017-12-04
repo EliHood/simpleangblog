@@ -40,7 +40,6 @@ class CommentController extends Controller
         $data['comment_createdAt'] = $post->created_at->diffForHumans();
 
 
-
         $response = new Response(json_encode($data));
         $response->headers->set('Content-Type', 'application/json'); 
 

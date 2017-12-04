@@ -23,15 +23,6 @@ class PostPolicy
         
     }
 
-    public function viewComment(User $user, Post $post)
-    {
-        $comment = Comment::with('user')->get();
-
-        if(!is_null($comment)){
-            return $comment;
-        }
-
-    }
 
     /**
      * Determine whether the user can create posts.

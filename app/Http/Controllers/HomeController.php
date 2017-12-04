@@ -72,13 +72,15 @@ class HomeController extends Controller
             $post['likesCount'] = Like::where('post_id', $post->id)->get()->count();
             $post['createdAt'] = $post->created_at->diffForHumans();
             $post['createdAt'] = $post->updated_at->diffForHumans();
+         
 
             return $post;
          
-
-         
        
         });
+
+
+
 
 
 

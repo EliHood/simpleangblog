@@ -35,6 +35,7 @@ Route::get('comments', 'CommentController@index');
 
 Route::post('/nameCheck', 'UserController@checkName');
 
+Route::post('/upload', 'UserController@uploadpic');
 
 Route::get('post/{post}/getTotalLikes', 'PostController@getTotalLikes');
 Route::get('profile/{user}', 'UserController@getProfile')->middleware('auth')->name('profile');
