@@ -11,13 +11,13 @@
 
             <div class="col-md-4 ">
                 <h1>{{ $user->name}} Profile</h1>
-                <img src="/uploads/avatars/{{ $user->avatar }}" style="width:150px; height:150px; border-radius:50%;">
+                <img src="/uploads/avatars/{{ $user->avatar }}" style="width:250px; height:250px;">
                 @if(auth()->user()->id )
                 <form enctype="multipart/form-data" action="/upload" method="POST">
                     <label id="update-pic">Update Profile Image</label>
                     <input id="file" type="file" name="avatar">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input id="pic-sub" type="submit" class="btn btn-sm btn-primary">
+                    <input id="pic-sub" type="submit"  class="btn btn-sm btn-primary">
                 </form>
                 @endif
             </div>

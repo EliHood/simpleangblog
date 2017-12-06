@@ -100,9 +100,16 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	       	post.comments.push(result.data);
 	        post.comment = '';
 	    });
-
-
 	};
+
+	$scope.uploadPic = function(profile)
+	{
+		$http.post('/upload', {
+			avatar: profile.pic
+		}).then(function(result) {
+			console.log("success");
+		});
+	}
 
 	$scope.comments = false;
 

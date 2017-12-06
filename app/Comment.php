@@ -16,6 +16,8 @@ class Comment extends Model
 
     ];
 
+    protected $appends = ['created_at_formatted'];
+
     public function user()
 	{
 	    return $this->belongsTo('App\User'); 
@@ -26,7 +28,7 @@ class Comment extends Model
         return $this->belongsTo('App\Post');
     }
 
-    public function getCreatedDateAttribute() 
+    public function getCreatedAtFormattedAttribute()
     {
         return $this->created_at->diffForHumans();
     }

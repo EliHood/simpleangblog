@@ -64,7 +64,7 @@
 
                             </p>
                           
-                            <p><% comment.comment_createdAt %> </p>
+                            <p><% comment.created_at_formatted %> </p>
                               <hr>
                         </figure>
                     </div>
