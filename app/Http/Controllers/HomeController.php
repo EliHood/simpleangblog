@@ -43,6 +43,8 @@ class HomeController extends Controller
                      ->with(['likes' => function ($query) {
                                 $query->whereNull('deleted_at');
                                 $query->where('user_id', auth()->user()->id);
+                           
+
                             }])
                       ->with(['comments' => function($query) {
         

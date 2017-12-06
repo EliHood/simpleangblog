@@ -71,7 +71,6 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	    $http.post('/auth/post', {
 	        body: $scope.post.body, 
 	    }).then(function(data, status, headers, config){
-	        console.log(data);  
 	        data.data['user'] = {
 	            name: data.data.name
 	        },
@@ -92,7 +91,7 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	    $http.post('/post/' + post.id +'/comment',{
 	        comment_body: post.comment,
 	    }).then(function(result){
-	        console.log(result.data);
+
 	       	result.data['user'] = {
 	            name: result.data.name
 	        },
@@ -141,7 +140,7 @@ $scope.getLike = function(post){
 
 	$http.get('/post/'+ post.id +'/islikedbyme').then(function(result) { 
 
-		console.log("result for postId = "+post.id+" is " +result.data);
+
 
 
     
@@ -184,7 +183,7 @@ $scope.getLike = function(post){
 		}).then(function(result, status, headers, config){
 			
 			 $scope.updatedAt = result.data.updatedAt;
-			 console.log($scope.updatedAt);
+
 		
 			
 		
@@ -213,9 +212,6 @@ $scope.getLike = function(post){
 		$http.get('/auth/posts').then(function(data){ 
 
 			$scope.myposts = data.data;
-
-
-				console.log($scope.myposts); 
 				}).then(function(result, status, header, config){ 
 				
 				}); 
