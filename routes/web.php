@@ -20,6 +20,19 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('auth/posts', 'HomeController@getPosts');
 
+// get images
+
+Route::get('/images', 'ImageController@getgalleryimages');
+Route::post('/uploadimage', 'ImageController@uploadimage');
+
+Route::get('gallery', 'ImageController@index')->middleware('auth')->name('gallery');
+
+Route::get('auth/gallery', 'ImageController@getImages');
+
+Route::get('image/{id}/islikedbyme', 'ImageController@isLikedByMe');
+Route::post('image/like/{image}', 'ImageController@like');
+
+
 Route::get('auth/userposts/{user}', 'HomeController@getuserPosts');
 
 Route::post('auth/post', 'PostController@storePost')->name('add.post');
@@ -36,6 +49,9 @@ Route::get('comments', 'CommentController@index');
 Route::post('/nameCheck', 'UserController@checkName');
 
 Route::post('/upload', 'UserController@uploadpic');
+
+Route::get('confirmation/resend');
+Route::get('confirmation/{id}/{token}');
 
 Route::get('post/{post}/getTotalLikes', 'PostController@getTotalLikes');
 Route::get('profile/{user}', 'UserController@getProfile')->middleware('auth')->name('profile');

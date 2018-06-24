@@ -3,6 +3,7 @@
 namespace App;
 use App\User;
 use App\Post;
+use App\GalleryImage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -33,6 +34,13 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
 
     }
+
+    public function images()
+    {
+        return $this->hasMany(GalleryImage::class);
+
+    }
+
 
     public function likes()
     {

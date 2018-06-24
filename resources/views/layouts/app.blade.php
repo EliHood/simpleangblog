@@ -56,6 +56,7 @@
                     
                                 @auth
                                    <li> <a href="{{ url('/home') }}">Home</a></li>
+                                   <li> <a href="{{ route('gallery') }}">Gallery</a></li>
                                 @endauth
                      
          

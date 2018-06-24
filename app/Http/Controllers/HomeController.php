@@ -27,11 +27,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
-    
-
-       
+    {       
         return view('home');
     }
 
@@ -43,7 +39,7 @@ class HomeController extends Controller
                      ->with(['likes' => function ($query) {
                                 $query->whereNull('deleted_at');
                                 $query->where('user_id', auth()->user()->id);
-                           
+
 
                             }])
                       ->with(['comments' => function($query) {
@@ -51,7 +47,8 @@ class HomeController extends Controller
                             $query->with('user');
 
 
-                        }])
+                        }])->orderBy('created_at', 'desc')
+
 
                         ->get();
 
@@ -67,7 +64,7 @@ class HomeController extends Controller
                 $post['update'] = true;
             }
 
-            $comment = new Comment();
+            // $comment = new Comment();
 
 
             $post['likedByMe'] = $post->likes->count() == 0 ? false : true;

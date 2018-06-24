@@ -3,23 +3,20 @@
 namespace App;
 
 use App\User;
-use App\Comment;
-use Illuminate\Notifications\Notifiable;
+use App\GalleryImage;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
-
-class Post extends Authenticatable
+class GalleryImage extends Authenticatable
 {
-   
-
     protected $fillable = [
-        'title',
-        'body',
+        'image_title',
         'user_id',
-        'created_at',
-        
+        'file_name', 
+        'created_at'
     ];
+
+    protected $table = 'images';
 
 
     public function user()
@@ -27,14 +24,9 @@ class Post extends Authenticatable
         return $this->belongsTo(User::class);
     }
 
-    public function comments()
-    {
-        return $this->hasMany('App\Comment');
-    }
-
     public function likes()
     {
-         return $this->hasMany('App\Like');
+       return $this->hasMany(ImageLike::class, 'image_id'); //here image_id is reference id of images table to likes table
     }
 
     public function likedByMe()
@@ -46,10 +38,6 @@ class Post extends Authenticatable
         }
         return false;
     }
-    
-
-
-
 
 
 }

@@ -25,7 +25,7 @@
                 <div id="mypost" class="col-md-10 panel-default" ng-repeat="post in myposts  ">
                     <!-- beginnging of ng-repeat post in myposts -->
                     <div id="eli-style-heading" class="panel-heading"><a class="link_profile" href="/profile/<% post.user.name | lowercase %>"><% post.user.name %></a></div>
-                    <div class="panel-body panel" ng-init="getLikeText(post); getLikecount(post)">
+                    <div class="panel-body panel">
                         
                         <i style="color:tomato; float:right; font-size:24px;" ng-click="like(post); toggle = !toggle"
                         ng-class="{[noheart] : !post.likedByMe, [heart]: post.likedByMe }">

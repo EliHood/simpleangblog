@@ -2,19 +2,18 @@
 
 namespace App;
 
-use App\Post;
+use App\GalleryImage;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Like extends Model
+class ImageLike extends Model
 {
     use SoftDeletes;
 
-     protected $fillable = [
+    protected $fillable = [
         'user_id',
-        'post_id'
+        'image_id'
     ];
-
-
 
 }

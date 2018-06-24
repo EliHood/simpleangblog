@@ -1,7 +1,5 @@
 
 
-
-
 var app = angular.module('eli', ["xeditable", 'angularMoment', 'angular-async-validation']);
 
 app.config(function($interpolateProvider) {
@@ -64,6 +62,7 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 
 	// scope data for posts
 	$scope.myposts = [];
+	$scope.myimages = [];
 
 	
 	// Form that works outside of ng-repeat adding posts which works flawlessly
@@ -120,6 +119,35 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	}
     
 
+$scope.getImageLike = function(image){ 
+
+	$http.get('/image/'+ image.id +'/islikedbyme').then(function(result) { 
+
+
+
+
+    
+	    if (result.data === 'true') { 
+		    console.log("Unlike block !!!!!"); 
+		    $scope.like_btn_text = "Unlike"; 
+	    } else{ 
+		    console.log("Like block !!!!!"); 
+		    $scope.like_btn_text = "Like"; 
+		 }
+	}); 
+}
+
+$scope.image_like = function(image) {
+    $http.post('/image/like/'+ image.id).then(function(result) {
+        image.likedByMe = !image.likedByMe;
+        if (image.likedByMe) {
+        	image.ImagelikesCount++;
+        } else {
+        	image.ImagelikesCount--;
+        }
+        $scope.ImagelikeCount = image.ImagelikeCount;
+    });
+};
 
 
 $scope.like = function(post) {
@@ -163,6 +191,16 @@ $scope.getLike = function(post){
 
         $scope.toggle = post.likedByMe === true;
     }
+
+	$scope.getLikeImageText = function(image){
+        console.log("getImageLikeText for imageId = "+image.id+ " image.likedByme = "+image.likedByMe);
+		console.log("image.likedByMe === true returns "+ (image.likedByMe === true));
+
+        $scope.toggle = image.likedByMe === true;
+    }
+
+    
+
 
 
 
@@ -218,9 +256,19 @@ $scope.getLike = function(post){
 		}; 
 
 
-	
+	$scope.getImages = function(){ 
+
+		$http.get('/auth/gallery').then(function(data){ 
+
+			$scope.myimages= data.data;
+				}).then(function(result, status, header, config){ 
+				
+				}); 
+	}; 
+
 
 	$scope.getPosts();
+	$scope.getImages();
 
 
 
