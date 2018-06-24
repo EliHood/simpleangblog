@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use App\Policies\TaskPolicy;
+use App\MyFollow;
 use App\User;
 use App\Post;
 use Image;
@@ -35,6 +36,20 @@ class UserController extends Controller
 
         
     }
+    public function my_follow(Request $request, $id)
+    {
+        $user = auth()->user();
+
+        if($user->id != $id && $otherUser = User::find($id)){
+
+            $user->toggleFollow($otherUser);
+        }
+
+        
+
+    }
+
+
 
     public function getRegister()
     {
@@ -118,19 +133,59 @@ class UserController extends Controller
     }
 
 
+    // public function getProfile($user)
+    // {  
+    //     $users = User::with(['posts.likes' => function($query) {
+    //                         $query->whereNull('deleted_at');
+    //                         $query->where('user_id', auth()->user()->id);
+    //                     }, 'follow','follow.follower'])
+    //                   ->where('name','=', $user)->get();
+
+    //     $user = $users->map(function(User $myuser){
+
+           
+    //         $myuser['followedByMe'] = $myuser->follow->count() == 0 ? false : true;
+
+    //         return $myuser;
+
+    //     });
+
+
+
+    //     if(!$user){
+    //         return redirect('404');
+    //     }
+
+    //     return view ('profile')->with('user', $user);
+    // }
     public function getProfile($user)
     {  
-            $user = User::with(['posts.likes' => function($query) {
-                                $query->whereNull('deleted_at');
-                            }])
-                          ->where('name','=', $user)
-                          ->first();
+        $users = User::with(['posts.likes' => function($query) {
+                            $query->whereNull('deleted_at');
+                            $query->where('user_id', auth()->user()->id);
+                        }, 'follow','follow.follower'])
+                        ->with(['followers' => function($query) {
 
-            if(!$user){
-                return redirect('404');
-            }
 
-            return view ('profile')->withUser($user);
+                        }])->where('name','=', $user)->get();
+
+        $user = $users->map(function(User $myuser){
+
+           
+            $myuser['followedByMe'] = $myuser->followers->count() == 0 ? false : true;
+
+            return $myuser;
+
+        });
+
+
+
+        if(!$user){
+            return redirect('404');
+        }
+
+        return view ('profile')->with('user', $user);
     }
+    
 
 }

@@ -63,6 +63,7 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	// scope data for posts
 	$scope.myposts = [];
 	$scope.myimages = [];
+	$scope.myusers = [];
 
 	
 	// Form that works outside of ng-repeat adding posts which works flawlessly
@@ -119,23 +120,23 @@ app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filt
 	}
     
 
-$scope.getImageLike = function(image){ 
+// $scope.getImageLike = function(image){ 
 
-	$http.get('/image/'+ image.id +'/islikedbyme').then(function(result) { 
+// 	$http.get('/image/'+ image.id +'/islikedbyme').then(function(result) { 
 
 
 
 
     
-	    if (result.data === 'true') { 
-		    console.log("Unlike block !!!!!"); 
-		    $scope.like_btn_text = "Unlike"; 
-	    } else{ 
-		    console.log("Like block !!!!!"); 
-		    $scope.like_btn_text = "Like"; 
-		 }
-	}); 
-}
+// 	    if (result.data === 'true') { 
+// 		    console.log("Unlike block !!!!!"); 
+// 		    $scope.like_btn_text = "Unlike"; 
+// 	    } else{ 
+// 		    console.log("Like block !!!!!"); 
+// 		    $scope.like_btn_text = "Like"; 
+// 		 }
+// 	}); 
+// }
 
 $scope.image_like = function(image) {
     $http.post('/image/like/'+ image.id).then(function(result) {
@@ -150,6 +151,8 @@ $scope.image_like = function(image) {
 };
 
 
+
+
 $scope.like = function(post) {
     $http.post('/post/like/'+ post.id).then(function(result) {
         post.likedByMe = !post.likedByMe;
@@ -162,6 +165,12 @@ $scope.like = function(post) {
     });
 };
 
+$scope.myfollow = function(user) {
+    $http.post('/user/follow/'+ user.id).then(function(result) {
+    	console.log("user id is:"+ user.id);
+    });
+};
+
 
 
 $scope.getLike = function(post){ 
@@ -171,7 +180,7 @@ $scope.getLike = function(post){
 
 
 
-    
+  
 	    if (result.data === 'true') { 
 		    console.log("Unlike block !!!!!"); 
 		    $scope.like_btn_text = "Unlike"; 
@@ -250,10 +259,11 @@ $scope.getLike = function(post){
 		$http.get('/auth/posts').then(function(data){ 
 
 			$scope.myposts = data.data;
-				}).then(function(result, status, header, config){ 
-				
+				}).then(function(result){ 
+					
 				}); 
 		}; 
+
 
 
 	$scope.getImages = function(){ 

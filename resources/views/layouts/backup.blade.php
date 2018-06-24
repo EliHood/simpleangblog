@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -18,8 +17,8 @@
 </head>
 <body class="animated fadeIn">
     <div ng-controller="mainCtrl" id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -43,7 +42,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="navbar-nav mr-auto">
                         <!-- Authentication Links -->
                         @guest
                              <li><a href="/">Home</a></li>
@@ -103,7 +102,7 @@
     <script type="text/javascript" src="https://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-
+    <script src="{{asset('js/app.js')}}" ></script>
 
 </body>
 </html>

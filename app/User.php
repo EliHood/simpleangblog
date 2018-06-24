@@ -6,10 +6,13 @@ use App\Post;
 use App\GalleryImage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\MyFollow;
+use Overtrue\LaravelFollow\Traits\CanFollow;
+use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,CanFollow, CanBeFollowed;
 
     /**
      * The attributes that are mass assignable.
@@ -29,15 +32,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public function posts()
     {
         return $this->hasMany(Post::class);
 
     }
 
+
     public function images()
     {
-        return $this->hasMany(GalleryImage::class);
+        return $this->hasMany(GalleryImage::class, 'user_id');
 
     }
 
@@ -45,6 +50,11 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany('App\Like');
+    }
+
+    public function follow()
+    {   
+        return $this->hasMany('App\MyFollow');
     }
 
     

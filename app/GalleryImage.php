@@ -16,8 +16,8 @@ class GalleryImage extends Authenticatable
         'created_at'
     ];
 
-    protected $table = 'images';
 
+  protected $table = 'images';
 
     public function user()
     {

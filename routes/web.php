@@ -43,6 +43,10 @@ Route::post('auth/upost/{post}', 'PostController@update')->name('update.post');
 Route::get('post/{id}/islikedbyme', 'PostController@isLikedByMe');
 Route::post('post/like/{post}', 'PostController@like');
 
+
+Route::post('user/follow/{id}', 'UserController@my_follow');
+
+
 Route::post('post/{post}/comment', 'CommentController@create');
 Route::get('comments', 'CommentController@index');
 
