@@ -46,6 +46,11 @@ class User extends Authenticatable
 
     }
 
+    public function getIsFollowingAttribute()
+    {   
+        return MyFollow::where('followable_id',$this->attributes['id'])->where('user_id',Auth()->user()->id)->count() > 0 ? true : false;
+    }
+
 
     public function likes()
     {
@@ -56,6 +61,7 @@ class User extends Authenticatable
     {   
         return $this->hasMany('App\MyFollow');
     }
+
 
     
     public function comments()

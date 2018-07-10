@@ -23,20 +23,19 @@ class MyFollow extends Model
 
     protected $table = 'followables';
 
-    public function follower()
-    {
-        return $this->belongsTo('App\User', 'followable_id');
+        //Relationships
+    //People who follow this user
+    public function followers()
+    {   
+        return $this->hasMany('App\MyFollow','followable_id','user_id');
+    }
+    //Relationships
+    //People who this user follows
+    public function follow()
+    {   
+        return $this->hasMany('App\MyFollow','user_id','followable_id');
     }
 
-    public function followedByMe()
-    {
-        foreach($this->follower as $followers) {
-            if ($followers->user_id == auth()->id()){
-                return true;
-            }
-        }
-        return false;
-    }
 
 
 }

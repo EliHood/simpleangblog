@@ -133,51 +133,24 @@ class UserController extends Controller
     }
 
 
-    // public function getProfile($user)
-    // {  
-    //     $users = User::with(['posts.likes' => function($query) {
-    //                         $query->whereNull('deleted_at');
-    //                         $query->where('user_id', auth()->user()->id);
-    //                     }, 'follow','follow.follower'])
-    //                   ->where('name','=', $user)->get();
-
-    //     $user = $users->map(function(User $myuser){
-
-           
-    //         $myuser['followedByMe'] = $myuser->follow->count() == 0 ? false : true;
-
-    //         return $myuser;
-
-    //     });
-
-
-
-    //     if(!$user){
-    //         return redirect('404');
-    //     }
-
-    //     return view ('profile')->with('user', $user);
-    // }
     public function getProfile($user)
     {  
         $users = User::with(['posts.likes' => function($query) {
                             $query->whereNull('deleted_at');
                             $query->where('user_id', auth()->user()->id);
-                        }, 'follow','follow.follower'])
-                        ->with(['followers' => function($query) {
+                        }, 'followers','follow.followers'])
 
+                        ->with(['followers' => function($query) {
+                 
 
                         }])->where('name','=', $user)->get();
 
         $user = $users->map(function(User $myuser){
-
-           
-            $myuser['followedByMe'] = $myuser->followers->count() == 0 ? false : true;
-
+            
+            $myuser['followedByMe'] = $myuser->getIsFollowingAttribute();
+            
             return $myuser;
-
         });
-
 
 
         if(!$user){
