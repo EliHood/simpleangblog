@@ -34,11 +34,11 @@
                 @endif
                     <div style="margin:50px 0px;">
                         <h4>Followers
-                        @foreach($myuser->followers as $use)
+                     
                         <span>
-                            ({{$use->follow->count()}})
+                            ({{$myuser->followers->count()}})
                         </span>
-                        @endforeach
+                   
                         </h4>
                     </div>
                      @endforeach
