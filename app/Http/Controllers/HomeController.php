@@ -6,6 +6,7 @@ use App\User;
 use App\Comment;
 use App\Post;
 use App\Like;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,8 @@ class HomeController extends Controller
     {       
         return view('404');
     }
+
+
 
 
 
