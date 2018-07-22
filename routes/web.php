@@ -27,13 +27,15 @@ Route::post('/uploadimage', 'ImageController@uploadimage');
 
 Route::get('gallery', 'ImageController@index')->middleware('auth')->name('gallery');
 
+Route::get('/404', 'HomeController@notFound');
+
 Route::get('auth/gallery', 'ImageController@getImages');
 
 Route::get('image/{id}/islikedbyme', 'ImageController@isLikedByMe');
 Route::post('image/like/{image}', 'ImageController@like');
 
 
-Route::get('auth/userposts/{user}', 'HomeController@getuserPosts');
+// Route::get('auth/userposts/{user}', 'HomeController@usergetPosts');
 
 Route::post('auth/post', 'PostController@storePost')->name('add.post');
 Route::delete('auth/post/{post}', 'PostController@destroy');
@@ -50,7 +52,6 @@ Route::post('user/follow/{id}', 'UserController@my_follow');
 Route::post('post/{post}/comment', 'CommentController@create');
 Route::get('comments', 'CommentController@index');
 
-Route::post('/nameCheck', 'UserController@checkName');
 
 Route::post('/upload', 'UserController@uploadpic');
 
@@ -59,6 +60,8 @@ Route::get('confirmation/{id}/{token}');
 
 Route::get('post/{post}/getTotalLikes', 'PostController@getTotalLikes');
 Route::get('profile/{user}', 'UserController@getProfile')->middleware('auth')->name('profile');
+
+
 
 Route::get('auth/login', 'UserController@getLogin')->name('login');
 Route::post('auth/login', 'UserController@userSignIn')->name('signin');

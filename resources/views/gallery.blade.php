@@ -45,7 +45,7 @@
 			<p class="content-text"> by <a  href="/profile/<% image.user.name | lowercase %>"><% image.user.name %></p>
 		</div>
 	</div>
-</div
+</div>
 	
 
 

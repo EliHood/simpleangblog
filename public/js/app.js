@@ -56708,8 +56708,10 @@ var Example = function (_Component) {
 			className: 'follow-button',
 			user: {
 				id: id.id,
-				followers: id
-			}
+				followers: id,
+				name: id.name
+			},
+			posts: ''
 		};
 		return _this;
 	}

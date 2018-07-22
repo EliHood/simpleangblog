@@ -39,6 +39,11 @@ class User extends Authenticatable
 
     }
 
+    public function scopeCheckName($query, $name)
+    {
+        return $query->where('name', '=', $name);
+    }
+
 
     public function images()
     {

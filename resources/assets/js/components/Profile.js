@@ -14,8 +14,10 @@ export default class Example extends Component {
 			className: 'follow-button',
 			user:{
 				id:id.id,
-				followers: id
-			}
+				followers: id,
+				name:id.name
+			},
+			posts: ''
 		};
 	}
 
@@ -38,6 +40,9 @@ export default class Example extends Component {
 		    });
 		}
 	}
+
+
+	
 
 
 	btnClick(){
@@ -77,6 +82,8 @@ export default class Example extends Component {
 	      <div className="followdoe">
 	        <button onClick={this.btnClick.bind(this)} className={this.state.className}>
 	          <p>{this.state.btnText}</p>
+
+
 
 	        </button>
  	      </div>

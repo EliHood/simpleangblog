@@ -10,6 +10,7 @@ use App\User;
 use App\Post;
 use Image;
 
+
 class UserController extends Controller
 {
 
@@ -61,21 +62,6 @@ class UserController extends Controller
         return view('auth/login');
     }
 
-    public function checkName(Request $request)
-    {
-        $name = $request['name'];
-
-        $existing_name = User::where('name', '=', $name)->first();
-
-        if($existing_name == NULL){
-            return 'name does not exists';
-
-        }
-        else{
-            return 'name exists';
-        }
-    }
-
 
     public function userSignUp(Request $request)
     {
@@ -92,12 +78,25 @@ class UserController extends Controller
 
     	$user = new User();
     	$user->email = $email;
+
     	$user->name = $name;
     	$user->password = $password;
 
-    	$user->save();
+        $check = User::CheckName($name)->first();
 
-    	return redirect('/home');
+        if($check){
+
+            return back()->with('message', 'Username already in Use'); 
+        }else{
+            
+            $user->save();
+
+            return redirect('/home');
+
+        }
+
+
+    	
     }
 
 

@@ -9,50 +9,6 @@ app.config(function($interpolateProvider) {
 
 
 
-app.run(function(editableOptions) {
-  editableOptions.theme = 'bs3';
-});
-
-
-
-app.filter('phpDate', function() {
-    return function(input, format) {
-
-  	
-        
-        if (format == "human") {
-   
-
-            return moment(input).startOf(input).fromNow(); 
-        } else {
-            // Covert the moment to a string using the passed format
-            // If nothing is passed, uses default JavaScript date format
-            return moment(input).startOf(input).fromNow(); 
-        }
-    };
-});
-
-
-app.directive('nameValidator', function($http, $q){
-	return{
-		require: 'ngModel',
-		link:function(scope, element, attrs, ngModel){
-			ngModel.$asyncValidators.name = function(modelValue, viewValue){
-				return  $http.post('/nameCheck', { name: viewValue}).then(
-                    function(response){
-                        if(!response.data.validName){
-                            return $q.reject(response.data.errorMessage);
-                        }
-                        return true;
-                    }
-
-                );
-
-			};
-		}
-	};
-
-});
 
 app.controller('mainCtrl', ['$scope', '$filter', '$http', function($scope, $filter,  $http){
 
