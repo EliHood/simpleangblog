@@ -33,23 +33,16 @@ export default class Example extends Component {
 		// console.log('data from component', this.state.user.followers.followedByMe);
 		let followed = JSON.parse(this.state.user.followers.followedByMe);
 
-		if (followed === true){	
+		if (followed === true){
 			this.setState({
-		        btnText:'Following', 
+		        btnText:'Following',
 		        className:'following-button'
 		    });
 		}
 	}
 
-
-	
-
-
 	btnClick(){
 		this.myfollow();
-
-
-
 	    if(this.state.btnText === 'Follow'){
 	      this.setState({
 	        btnText:'Following'
@@ -59,8 +52,6 @@ export default class Example extends Component {
 	        btnText: 'Follow'
 	      })
 	    }
-
-
 	    if(this.state.className === 'follow-button'){
 	      this.setState({
 	        className: 'following-button'
@@ -73,23 +64,16 @@ export default class Example extends Component {
 	      }
 
 	}
-
-
- 
-
 	render(){
 		return (
 	      <div className="followdoe">
 	        <button onClick={this.btnClick.bind(this)} className={this.state.className}>
 	          <p>{this.state.btnText}</p>
-
-
-
 	        </button>
  	      </div>
 	    );
 	}
-    
+
 }
 if (document.getElementById('profile')) {
    var data = document.getElementById('profile').getAttribute('data');
